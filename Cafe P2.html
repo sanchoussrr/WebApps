@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кав'ярня "Осінній Львів"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #8B4513;
+            --color-secondary: #D2691E;
+            --color-accent: #FF8C00;
+            --color-light: #FFF8DC;
+            --color-dark: #3C2A1E;
+            --color-autumn: #E67E22;
+            --color-gold: #D4AF37;
+            --color-magic: #740001;
+            --color-gryffindor: #740001;
+            --color-hufflepuff: #FFDB00;
+            --color-ravenclaw: #0E1A40;
+            --color-slytherin: #1A472A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d2691e' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-light);
+            font-size: 1.8rem;
+            margin-left: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--color-accent);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            color: var(--color-light);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--color-accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1463797221720-6b07e6426c24?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--color-light);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-light);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -30px;
+            width: 30px;
+            height: 150%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(20deg);
+            transition: all 0.4s;
+        }
+        
+        .btn:hover:before {
+            left: 110%;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leaves {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .leaf {
+            position: absolute;
+            background-size: cover;
+            opacity: 0.7;
+        }
+        
+        /* Magic Elements */
+        .magic-sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px var(--color-gold);
+            opacity: 0;
+            z-index: 5;
+        }
+        
+        .floating-coffee {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--color-primary);
+            opacity: 0.7;
+            z-index: 2;
+        }
+        
+        /* Hogwarts Elements */
+        .hogwarts-house {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            z-index: 3;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gryffindor {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23740001' d='M50 5L10 95h80L50 5zm0 20l30 70H20l30-70z'/%3E%3Cpath fill='%23FFDB00' d='M50 25l30 70H20l30-70z'/%3E%3C/svg%3E");
+        }
+        
+        .hufflepuff {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle fill='%23FFDB00' cx='50' cy='50' r='45'/%3E%3Cpath fill='%23000000' d='M50 25a25 25 0 1 0 0 50 25 25 0 0 0 0-50zm0 10a15 15 0 1 1 0 30 15 15 0 0 1 0-30z'/%3E%3C/svg%3E");
+        }
+        
+        .ravenclaw {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%230E1A40' d='M50 5l20 90H30l20-90z'/%3E%3Cpath fill='%23946B2D' d='M50 5l-20 90h40L50 5z'/%3E%3C/svg%3E");
+        }
+        
+        .slytherin {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%231A472A' d='M50 5c-15 0-30 20-30 45s15 45 30 45 30-20 30-45S65 5 50 5z'/%3E%3Cpath fill='%23AAAAAA' d='M50 15c-12 0-25 17-25 35s13 35 25 35 25-17 25-35S62 15 50 15z'/%3E%3C/svg%3E");
+        }
+        
+        .magic-wand {
+            position: absolute;
+            width: 100px;
+            height: 10px;
+            background: linear-gradient(to right, #8B4513, #D2691E, #FFDB00, #D2691E, #8B4513);
+            border-radius: 10px;
+            z-index: 4;
+            transform-origin: left center;
+            box-shadow: 0 0 15px var(--color-gold);
+        }
+        
+        .spell {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-gold);
+            box-shadow: 0 0 10px 2px var(--color-gold);
+            z-index: 4;
+        }
+        
+        .floating-book {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #8B4513;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gold);
+            font-size: 1.5rem;
+        }
+        
+        /* New Animations */
+        .coffee-bean {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background: #5D4037;
+            border-radius: 50%;
+            z-index: 3;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .cinnamon-stick {
+            position: absolute;
+            width: 40px;
+            height: 5px;
+            background: #D2691E;
+            border-radius: 5px;
+            z-index: 3;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        .autumn-bird {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #8B4513;
+            z-index: 3;
+            animation: fly 15s linear infinite;
+        }
+        
+        @keyframes fly {
+            0% {
+                left: -50px;
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(-5deg);
+            }
+            100% {
+                left: 100%;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--color-primary);
+            color: var(--color-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background: var(--color-accent);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--color-accent);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--color-secondary);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .about-image:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--color-accent);
+            border-radius: 10px;
+            top: 15px;
+            left: 15px;
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .about-image:hover:before {
+            top: 10px;
+            left: 10px;
+        }
+        
+        /* Menu Section */
+        .menu {
+            background: linear-gradient(to bottom right, #FFF8DC, #F5DEB3);
+            position: relative;
+        }
+        
+        .menu:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d2691e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 2px solid var(--color-primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+        }
+        
+        .menu-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item p {
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .menu-item-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--color-accent);
+            font-size: 1.2rem;
+        }
+        
+        /* Interactive Coffee Cup */
+        .interactive-coffee {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 70px;
+            background: #8B4513;
+            border-radius: 5px 5px 15px 15px;
+            z-index: 999;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-coffee:before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 5px;
+            width: 50px;
+            height: 20px;
+            background: #D2691E;
+            border-radius: 50%;
+        }
+        
+        .interactive-coffee:after {
+            content: '☕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .interactive-coffee:hover {
+            transform: translateY(-5px);
+        }
+        
+        .coffee-steam {
+            position: absolute;
+            top: -30px;
+            left: 25px;
+            width: 10px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: steam 2s infinite;
+        }
+        
+        @keyframes steam {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background: var(--color-dark);
+            color: var(--color-light);
+        }
+        
+        .gallery .section-title h2 {
+            color: var(--color-light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-overlay i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(to bottom right, #F5F5DC, #F5DEB3);
+            position: relative;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+        
+        .contact-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+        
+        .telegram-connect {
+            background: #0088cc;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .telegram-connect:hover {
+            background: #006da3;
+            transform: translateY(-3px);
+        }
+        
+        .telegram-connect i {
+            margin-right: 0.5rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--color-accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: var(--color-light);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--color-accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--color-light);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--color-accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--color-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .footer-links a:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+        
+        .footer-links a:hover:before {
+            left: 0.3rem;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes fallingLeaf {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(90deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        @keyframes wandWave {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        @keyframes spellCast {
+            0% { transform: translateX(0) scale(1); opacity: 1; }
+            100% { transform: translateX(200px) scale(2); opacity: 0; }
+        }
+        
+        @keyframes bookFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(2deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(10px) rotate(-2deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .coffee-loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .coffee-loader:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .coffee-loader:after {
+            content: '☕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: var(--color-primary);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            transform: translateX(400px);
+            transition: all 0.5s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .quiz-container.open {
+            transform: translateX(0);
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .quiz-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-primary);
+        }
+        
+        .close-quiz {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark);
+        }
+        
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quiz-option {
+            padding: 0.8rem;
+            background: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            background: #e0e0e0;
+        }
+        
+        .quiz-option.selected {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .quiz-result {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .quiz-result.correct {
+            background: #4CAF50;
+            color: white;
+            display: block;
+        }
+        
+        .quiz-result.incorrect {
+            background: #F44336;
+            color: white;
+            display: block;
+        }
+        
+        .quiz-house {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .quiz-house.gryffindor {
+            background: var(--color-gryffindor);
+            color: white;
+            display: block;
+        }
+        
+        .quiz-house.hufflepuff {
+            background: var(--color-hufflepuff);
+            color: var(--color-dark);
+            display: block;
+        }
+        
+        .quiz-house.ravenclaw {
+            background: var(--color-ravenclaw);
+            color: white;
+            display: block;
+        }
+        
+        .quiz-house.slytherin {
+            background: var(--color-slytherin);
+            color: white;
+            display: block;
+        }
+        
+        .next-question {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .next-question:hover {
+            background: var(--color-accent);
+        }
+        
+        /* Quiz Toggle Button */
+        .quiz-toggle {
+            position: fixed;
+            bottom: 180px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--color-magic);
+            color: var(--color-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+            background: var(--color-gold);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--color-primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            nav a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .quiz-container {
+                width: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .quiz-container {
+                width: 90%;
+                right: 5%;
+            }
+            
+            .quiz-toggle {
+                bottom: 160px;
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-image:before {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .theme-toggle {
+                top: 80px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .quiz-toggle {
+                bottom: 140px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="coffee-loader"></div>
+    </div>
+
+    <!-- Interactive Coffee Cup -->
+    <div class="interactive-coffee" id="interactiveCoffee">
+        <div class="coffee-steam"></div>
+    </div>
+
+    <!-- Quiz Toggle Button -->
+    <div class="quiz-toggle" id="quizToggle">
+        <i class="fas fa-hat-wizard"></i>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container" id="quizContainer">
+        <div class="quiz-header">
+            <h3>Магічна вікторина</h3>
+            <button class="close-quiz" id="closeQuiz">&times;</button>
+        </div>
+        <div class="quiz-content">
+            <div class="quiz-question" id="quizQuestion">
+                <!-- Question will be inserted here -->
+            </div>
+            <div class="quiz-options" id="quizOptions">
+                <!-- Options will be inserted here -->
+            </div>
+            <div class="quiz-result" id="quizResult">
+                <!-- Result will be inserted here -->
+            </div>
+            <div class="quiz-house" id="quizHouse">
+                <!-- House result will be inserted here -->
+            </div>
+            <button class="next-question" id="nextQuestion">Наступне питання</button>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Повідомлення надіслано!</span>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" id="logo">
+                    <i class="fas fa-mug-hot logo-icon"></i>
+                    <h1>Осінній Львів</h1>
+                </div>
+                <nav>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul id="navMenu">
+                        <li><a href="#hero">Головна</a></li>
+                        <li><a href="#about">Про нас</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#contact">Контакти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="leaves" id="leavesContainer"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Кав'ярня "Осінній Львів"</h2>
+                <p>Відчуйте магію осені у Львові з кожною чашкою нашої кави. Аромат свіжообжареного кави, затишна атмосфера та неперевершений смак.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn">Переглянути меню</a>
+                    <a href="#contact" class="btn" style="background: transparent; margin-left: 1rem;">Забронювати столик</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Про нашу кав'ярню</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Історія з любов'ю до кави</h3>
+                    <p>Наша кав'ярня заснована у 2010 році у самому серці Львова. Ми створили унікальне місце, де поєднуються традиції автентичного львівського кавоваріння та сучасні тенденції.</p>
+                    <p>Ми пишаємося тим, що використовуємо лише відібране зерно з найкращих плантацій світу, яке обсмажується на нашій власній маленькій обсмажувальні.</p>
+                    <p>Осінь у Львові - особлива пора, і ми намагалися передати цю атмосферу в нашому інтер'єрі, музиці та, звісно, у смаку нашої кави.</p>
+                    <a href="#contact" class="btn">Відвідати нас</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Інтер'єр кав'ярні">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наше меню</h2>
+            </div>
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="coffee">Кава</button>
+                <button class="filter-btn" data-filter="tea">Чай</button>
+                <button class="filter-btn" data-filter="dessert">Десерти</button>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Еспресо">
+                    <div class="menu-item-content">
+                        <h3>Еспресо "Львівський"</h3>
+                        <p>Класичний міцний еспресо з нотками горіхів та чорного шоколаду.</p>
+                        <div class="menu-item-price">
+                            <span class="price">35 грн</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Капучино">
+                    <div class="menu-item-content">
+                        <h3>Капучино "Золота осінь"</h3>
+                        <p>Ніжний капучино з ідеальним співвідношенням еспресо, молока та піни.</p>
+                        <div class="menu-item-price">
+                            <span class="price">45 грн</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Лате">
+                    <div class="menu-item-content">
+                        <h3>Лате "Осінній вечір"</h3>
+                        <p>Ароматний лате з додаванням кориці та карамелі, що нагадує про осінні вечори у Львові.</p>
+                        <div class="menu-item-price">
+                            <span class="price">50 грн</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="tea">
+                    <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Чай">
+                    <div class="menu-item-content">
+                        <h3>Чай "Львівські традиції"</h3>
+                        <p>Ароматний трав'яний чай з львівських трав, меду та лимона.</p>
+                        <div class="menu-item-price">
+                            <span class="price">40 грн</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab794f24d6c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Десерт">
+                    <div class="menu-item-content">
+                        <h3>Яблучний штрудель</h3>
+                        <p>Традиційний австрійський штрудель з яблуками, родзинками та корицею.</p>
+                        <div class="menu-item-price">
+                            <span class="price">65 грн</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Десерт">
+                    <div class="menu-item-content">
+                        <h3>Тірамісу "Львів"</h3>
+                        <p>Класичний італійський десерт з особливим львівським акцентом.</p>
+                        <div class="menu-item-price">
+                            <span class="price">70 грн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наша галерея</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Інтер'єр кав'ярні">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Кавоварка">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Приготування кави">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Страви">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Зона відpoчинку">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Затишний куточок">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакти</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Адреса</h3>
+                            <p>м. Львів, вул. Вірменська, 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Години роботи</h3>
+                            <p>Пн-Нд: 08:00 - 22:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Телефон</h3>
+                            <p>+38 (032) 123 45 67</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>info@osinniy.lviv.ua</p>
+                        </div>
+                    </div>
+                    <a href="https://t.me/osinniy_lviv_cafe" class="telegram-connect">
+                        <i class="fab fa-telegram-plane"></i> Написати в Telegram
+                    </a>
+                </div>
+                <div class="contact-form">
+                    <h3>Замовлення столика</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="name">Ім'я</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Час</label>
+                            <input type="time" id="time" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Кількість гостей</label>
+                            <input type="number" id="guests" class="form-control" min="1" max="10" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Забронювати</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Про нас</h3>
+                    <p>Кав'ярня "Осінній Львів" - це місце, де кожна чашка кави розповідає свою унікальну історію, а атмосфера затишку та тепла залишається у серці назавжди.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Швидкі посилання</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Головна</a></li>
+                        <li><a href="#about">Про нас</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#contact">Контакти</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Години роботи</h3>
+                    <p>Понеділок - П'ятниця: 8:00 - 22:00</p>
+                    <p>Субота - Неділя: 9:00 - 23:00</p>
+                    <h3>Магічні пропозиції</h3>
+                    <p>Щопонеділка - знижка 20% на всі напої для студентів Хогвартсу</p>
+                    <p>Щосереди - безкоштовний десерт при замовленні двох кав</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Кав'ярня "Осінній Львів". Всі права захищені.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img src="" alt="" class="modal-img" id="modalImg">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loader when page is loaded
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a, .hero-buttons a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navMenu.classList.contains('show')) {
+                            navMenu.classList.remove('show');
+                        }
+                    }
+                });
+            });
+            
+            // Create falling leaves
+            const leavesContainer = document.getElementById('leavesContainer');
+            const leafTypes = 5;
+            const leafColors = ['#8B4513', '#D2691E', '#A0522D', '#CD853F', '#F4A460'];
+            
+            for (let i = 0; i < 20; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                
+                // Random properties
+                const size = Math.random() * 30 + 20;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 10 + 10;
+                const leafType = Math.floor(Math.random() * leafTypes) + 1;
+                const color = leafColors[Math.floor(Math.random() * leafColors.length)];
+                
+                // Set styles
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+                leaf.style.left = `${left}%`;
+                leaf.style.animationDelay = `${delay}s`;
+                leaf.style.animationDuration = `${duration}s`;
+                leaf.style.background = color;
+                leaf.style.borderRadius = '0 100% 0 100%';
+                leaf.style.boxShadow = `2px 2px 5px rgba(0,0,0,0.2)`;
+                
+                // Add animation
+                leaf.style.animation = `fallingLeaf ${duration}s linear ${delay}s infinite`;
+                
+                leavesContainer.appendChild(leaf);
+            }
+            
+            // Create magic sparkles
+            function createSparkle() {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('magic-sparkle');
+                
+                const size = Math.random() * 8 + 4;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const duration = Math.random() * 2 + 1;
+                
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.left = `${left}%`;
+                sparkle.style.top = `${top}%`;
+                sparkle.style.animation = `sparkle ${duration}s ease-in-out infinite`;
+                
+                document.body.appendChild(sparkle);
+                
+                // Remove sparkle after animation completes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, duration * 1000);
+            }
+            
+            // Create floating coffee elements
+            function createFloatingCoffee() {
+                const coffee = document.createElement('div');
+                coffee.classList.add('floating-coffee');
+                coffee.innerHTML = '<i class="fas fa-mug-hot"></i>';
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                
+                coffee.style.left = `${left}%`;
+                coffee.style.top = `-50px`;
+                coffee.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(coffee);
+                
+                // Remove coffee after animation completes
+                setTimeout(() => {
+                    coffee.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create Hogwarts houses
+            function createHogwartsHouse() {
+                const houses = ['gryffindor', 'hufflepuff', 'ravenclaw', 'slytherin'];
+                const house = houses[Math.floor(Math.random() * houses.length)];
+                
+                const houseElement = document.createElement('div');
+                houseElement.classList.add('hogwarts-house', house);
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 15 + 15;
+                const delay = Math.random() * 10;
+                
+                houseElement.style.left = `${left}%`;
+                houseElement.style.top = `-60px`;
+                houseElement.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(houseElement);
+                
+                // Remove house after animation completes
+                setTimeout(() => {
+                    houseElement.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create magic wands
+            function createMagicWand() {
+                const wand = document.createElement('div');
+                wand.classList.add('magic-wand');
+                
+                const top = Math.random() * 100;
+                const left = -100;
+                const duration = Math.random() * 5 + 5;
+                const delay = Math.random() * 15;
+                
+                wand.style.top = `${top}%`;
+                wand.style.left = `${left}px`;
+                wand.style.animation = `wandWave ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(wand);
+                
+                // Create spell effect
+                setTimeout(() => {
+                    const spell = document.createElement('div');
+                    spell.classList.add('spell');
+                    
+                    spell.style.top = `${top}%`;
+                    spell.style.left = `${left + 100}px`;
+                    spell.style.animation = `spellCast 2s ease-in-out forwards`;
+                    
+                    document.body.appendChild(spell);
+                    
+                    // Remove spell after animation
+                    setTimeout(() => {
+                        spell.remove();
+                    }, 2000);
+                }, 1000);
+                
+                // Remove wand after animation completes
+                setTimeout(() => {
+                    wand.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create floating books
+            function createFloatingBook() {
+                const book = document.createElement('div');
+                book.classList.add('floating-book');
+                book.innerHTML = '<i class="fas fa-book"></i>';
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 8 + 8;
+                const delay = Math.random() * 5;
+                
+                book.style.left = `${left}%`;
+                book.style.top = `-50px`;
+                book.style.animation = `bookFloat ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(book);
+                
+                // Remove book after animation completes
+                setTimeout(() => {
+                    book.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create coffee beans
+            function createCoffeeBean() {
+                const bean = document.createElement('div');
+                bean.classList.add('coffee-bean');
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 12 + 8;
+                const delay = Math.random() * 5;
+                
+                bean.style.left = `${left}%`;
+                bean.style.top = `-20px`;
+                bean.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(bean);
+                
+                // Remove bean after animation completes
+                setTimeout(() => {
+                    bean.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create cinnamon sticks
+            function createCinnamonStick() {
+                const stick = document.createElement('div');
+                stick.classList.add('cinnamon-stick');
+                
+                const left = Math.random() * 100;
+                const duration = Math.random() * 15 + 10;
+                const delay = Math.random() * 5;
+                
+                stick.style.left = `${left}%`;
+                stick.style.top = `-30px`;
+                stick.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                document.body.appendChild(stick);
+                
+                // Remove stick after animation completes
+                setTimeout(() => {
+                    stick.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            // Create autumn birds
+            function createAutumnBird() {
+                const bird = document.createElement('div');
+                bird.classList.add('autumn-bird');
+                bird.innerHTML = '<i class="fas fa-dove"></i>';
+                
+                const top = Math.random() * 50 + 10;
+                const duration = Math.random() * 20 + 15;
+                
+                bird.style.top = `${top}%`;
+                bird.style.animation = `fly ${duration}s linear infinite`;
+                
+                document.body.appendChild(bird);
+                
+                // Remove bird after animation completes
+                setTimeout(() => {
+                    bird.remove();
+                }, duration * 1000);
+            }
+            
+            // Generate magical elements periodically
+            setInterval(createSparkle, 300);
+            setInterval(createFloatingCoffee, 2000);
+            setInterval(createHogwartsHouse, 5000);
+            setInterval(createMagicWand, 8000);
+            setInterval(createFloatingBook, 10000);
+            setInterval(createCoffeeBean, 4000);
+            setInterval(createCinnamonStick, 6000);
+            setInterval(createAutumnBird, 15000);
+            
+            // Menu item animation on scroll
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            function checkMenuItems() {
+                const triggerBottom = window.innerHeight * 0.8;
+                
+                menuItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    
+                    if (itemTop < triggerBottom) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkMenuItems);
+            checkMenuItems(); // Initial check
+            
+            // Gallery modal
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalClose = document.getElementById('modalClose');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    modalImg.src = imgSrc;
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            modalClose.addEventListener('click', function() {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Interactive coffee cup
+            const interactiveCoffee = document.getElementById('interactiveCoffee');
+            let coffeeClickCount = 0;
+            
+            interactiveCoffee.addEventListener('click', function() {
+                coffeeClickCount++;
+                
+                // Create a special effect every 3 clicks
+                if (coffeeClickCount % 3 === 0) {
+                    // Create a magical burst effect
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const burstSparkle = document.createElement('div');
+                            burstSparkle.classList.add('magic-sparkle');
+                            
+                            const size = Math.random() * 12 + 6;
+                            const angle = Math.random() * Math.PI * 2;
+                            const distance = Math.random() * 100 + 50;
+                            
+                            burstSparkle.style.width = `${size}px`;
+                            burstSparkle.style.height = `${size}px`;
+                            burstSparkle.style.left = `calc(50% - ${size/2}px)`;
+                            burstSparkle.style.top = `calc(50% - ${size/2}px)`;
+                            burstSparkle.style.animation = `sparkle 1s ease-in-out forwards`;
+                            
+                            interactiveCoffee.appendChild(burstSparkle);
+                            
+                            // Animate the sparkle outward
+                            burstSparkle.animate([
+                                { transform: 'translate(0, 0)', opacity: 1 },
+                                { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`, opacity: 0 }
+                            ], {
+                                duration: 1000,
+                                easing: 'ease-out'
+                            });
+                            
+                            // Remove after animation
+                            setTimeout(() => {
+                                burstSparkle.remove();
+                            }, 1000);
+                        }, i * 50);
+                    }
+                }
+                
+                // Add a little bounce effect
+                interactiveCoffee.animate([
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(-10px)' },
+                    { transform: 'translateY(0)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-out'
+                });
+            });
+            
+            // Notification
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            // Show notification
+            function showNotification(text) {
+                notificationText.textContent = text;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Menu filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter menu items
+                    menuItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const logo = document.getElementById('logo');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                
+                if (document.body.classList.contains('dark-theme')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    document.body.style.backgroundColor = '#1a1a1a';
+                    document.body.style.color = '#f5f5f5';
+                    logo.style.textShadow = '0 0 10px var(--color-gold)';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    document.body.style.backgroundColor = '';
+                    document.body.style.color = '';
+                    logo.style.textShadow = '';
+                }
+            });
+            
+            // Reservation form
+            const reservationForm = document.getElementById('reservationForm');
+            
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                const guests = document.getElementById('guests').value;
+                
+                // Send email using FormSubmit.co
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('phone', phone);
+                formData.append('date', date);
+                formData.append('time', time);
+                formData.append('guests', guests);
+                formData.append('_replyto', 'sancous27@gmail.com');
+                formData.append('_subject', 'Нове бронювання столика');
+                
+                fetch('https://formsubmit.co/sancous27@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showNotification('Столик заброньовано! Чекаємо на вас!');
+                        reservationForm.reset();
+                    } else {
+                        showNotification('Сталася помилка. Спробуйте ще раз.');
+                    }
+                })
+                .catch(error => {
+                    showNotification('Сталася помилка. Спробуйте ще раз.');
+                });
+            });
+            
+            // Parallax effect for hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.hero');
+                const rate = scrolled * -0.5;
+                
+                parallax.style.backgroundPosition = `center ${rate}px`;
+            });
+            
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.about-text, .about-image, .contact-info, .contact-form');
+            
+            function checkAnimation() {
+                const triggerBottom = window.innerHeight * 0.85;
+                
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    
+                    if (elementTop < triggerBottom) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Set initial state
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.8s ease';
+            });
+            
+            window.addEventListener('scroll', checkAnimation);
+            checkAnimation(); // Initial check
+            
+            // Quiz functionality
+            const quizToggle = document.getElementById('quizToggle');
+            const quizContainer = document.getElementById('quizContainer');
+            const closeQuiz = document.getElementById('closeQuiz');
+            const quizQuestion = document.getElementById('quizQuestion');
+            const quizOptions = document.getElementById('quizOptions');
+            const quizResult = document.getElementById('quizResult');
+            const quizHouse = document.getElementById('quizHouse');
+            const nextQuestionBtn = document.getElementById('nextQuestion');
+            
+            // Quiz questions
+            const quizQuestions = [
+                {
+                    question: "Який твій улюблений предмет у Хогвартсі?",
+                    options: [
+                        { text: "Зіллярство", house: "slytherin" },
+                        { text: "Трансфігурація", house: "gryffindor" },
+                        { text: "Астрономія", house: "ravenclaw" },
+                        { text: "Догляд за магічними істотами", house: "hufflepuff" }
+                    ]
+                },
+                {
+                    question: "Яка твоя найсильніша риса характеру?",
+                    options: [
+                        { text: "Амбіційність", house: "slytherin" },
+                        { text: "Хоробрість", house: "gryffindor" },
+                        { text: "Кмітливість", house: "ravenclaw" },
+                        { text: "Відданість", house: "hufflepuff" }
+                    ]
+                },
+                {
+                    question: "Яке магічне істота тобі подобається?",
+                    options: [
+                        { text: "Змія", house: "slytherin" },
+                        { text: "Лев", house: "gryffindor" },
+                        { text: "Орел", house: "ravenclaw" },
+                        { text: "Борсук", house: "hufflepuff" }
+                    ]
+                },
+                {
+                    question: "Яку магічну річ ти б обрав?",
+                    options: [
+                        { text: "Медальйон Слизерина", house: "slytherin" },
+                        { text: "Меч Грифіндора", house: "gryffindor" },
+                        { text: "Діадема Рейвенклов", house: "ravenclaw" },
+                        { text: "Чаша Хаффлпафф", house: "hufflepuff" }
+                    ]
+                }
+            ];
+            
+            let currentQuestion = 0;
+            let housePoints = {
+                gryffindor: 0,
+                hufflepuff: 0,
+                ravenclaw: 0,
+                slytherin: 0
+            };
+            
+            // Toggle quiz
+            quizToggle.addEventListener('click', function() {
+                quizContainer.classList.toggle('open');
+                startQuiz();
+            });
+            
+            closeQuiz.addEventListener('click', function() {
+                quizContainer.classList.remove('open');
+            });
+            
+            // Start quiz
+            function startQuiz() {
+                currentQuestion = 0;
+                housePoints = {
+                    gryffindor: 0,
+                    hufflepuff: 0,
+                    ravenclaw: 0,
+                    slytherin: 0
+                };
+                loadQuestion();
+            }
+            
+            // Load question
+            function loadQuestion() {
+                if (currentQuestion >= quizQuestions.length) {
+                    showHouseResult();
+                    return;
+                }
+                
+                const question = quizQuestions[currentQuestion];
+                quizQuestion.textContent = question.question;
+                
+                // Clear options
+                quizOptions.innerHTML = '';
+                quizResult.className = 'quiz-result';
+                quizHouse.className = 'quiz-house';
+                
+                // Add options
+                question.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.classList.add('quiz-option');
+                    optionElement.textContent = option.text;
+                    optionElement.dataset.house = option.house;
+                    
+                    optionElement.addEventListener('click', function() {
+                        // Remove selected class from all options
+                        document.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        
+                        // Store selected house
+                        this.dataset.selected = 'true';
+                    });
+                    
+                    quizOptions.appendChild(optionElement);
+                });
+                
+                // Hide next question button until an option is selected
+                nextQuestionBtn.style.display = 'none';
+            }
+            
+            // Next question button
+            nextQuestionBtn.addEventListener('click', function() {
+                const selectedOption = document.querySelector('.quiz-option.selected');
+                
+                if (selectedOption) {
+                    // Add points to the selected house
+                    housePoints[selectedOption.dataset.house]++;
+                    
+                    // Move to next question
+                    currentQuestion++;
+                    loadQuestion();
+                }
+            });
+            
+            // Show house result
+            function showHouseResult() {
+                quizQuestion.textContent = "Твоя факультет у Хогвартсі:";
+                quizOptions.innerHTML = '';
+                nextQuestionBtn.textContent = 'Спробувати ще раз';
+                nextQuestionBtn.removeEventListener('click', arguments.callee);
+                nextQuestionBtn.addEventListener('click', startQuiz);
+                
+                // Find the house with the most points
+                let maxPoints = 0;
+                let winningHouse = '';
+                
+                for (const house in housePoints) {
+                    if (housePoints[house] > maxPoints) {
+                        maxPoints = housePoints[house];
+                        winningHouse = house;
+                    }
+                }
+                
+                // Display the result
+                quizHouse.textContent = winningHouse.charAt(0).toUpperCase() + winningHouse.slice(1);
+                quizHouse.classList.add(winningHouse);
+                quizHouse.style.display = 'block';
+                
+                // Change button text
+                nextQuestionBtn.textContent = 'Спробувати ще раз';
+            }
+            
+            // Update option selection
+            quizOptions.addEventListener('click', function(e) {
+                if (e.target.classList.contains('quiz-option')) {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    e.target.classList.add('selected');
+                    
+                    // Show next question button
+                    nextQuestionBtn.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

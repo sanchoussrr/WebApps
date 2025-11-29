@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Coffee - Міжпланетна кав'ярня</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poiret+One&family=Rubik+Glitch&display=swap" rel="stylesheet">
+    <style>
+        /* Глобальні стилі та змінні */
+        :root {
+            --space: #0a0e17;
+            --coffee: #4e3427;
+            --accent: #ff5722;
+            --neon: #00f3ff;
+            --light: #f5ebe0;
+            --dark: #1a120b;
+            --transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--space);
+            color: var(--light);
+            font-family: 'Poiret One', cursive;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 10px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 5px);
+            background-size: 100px 100px, 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: stars 60s linear infinite;
+        }
+
+        /* Анімації */
+        @keyframes stars {
+            from { background-position: 0 0, 25px 25px; }
+            to { background-position: 100px 100px, 125px 125px; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes coffeeSteam {
+            0% { opacity: 0; transform: translateY(0) scale(0.8) rotate(0deg); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-40px) scale(1.5) rotate(10deg); }
+        }
+
+        @keyframes neon {
+            0%, 100% { text-shadow: 0 0 5px var(--neon), 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 30px var(--neon); }
+            50% { text-shadow: 0 0 5px var(--neon), 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 40px var(--accent); }
+        }
+
+        @keyframes warp {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+            50% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+            100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Хедер та навігація */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 23, 0.8);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(10, 14, 23, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--light);
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            animation: neon 3s infinite;
+        }
+
+        .logo i {
+            color: var(--accent);
+            animation: spin 10s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent), var(--neon));
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Герой секція */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(78, 52, 39, 0.2) 0%, rgba(10, 14, 23, 0.8) 70%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+            text-align: center;
+            padding: 0 2rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Rubik Glitch', cursive;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, var(--accent), var(--neon), var(--light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 4s infinite;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.6);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.7;
+            color: var(--accent);
+            animation: float 8s ease-in-out infinite;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            color: var(--accent);
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 15%;
+            animation-delay: 2s;
+            color: var(--neon);
+        }
+
+        .floating-element:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 4s;
+            color: var(--accent);
+        }
+
+        .floating-element:nth-child(4) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 1s;
+            color: var(--neon);
+        }
+
+        .floating-element:nth-child(5) {
+            top: 40%;
+            left: 5%;
+            animation-delay: 5s;
+            color: var(--accent);
+        }
+
+        .floating-element:nth-child(6) {
+            top: 80%;
+            right: 5%;
+            animation-delay: 3s;
+            color: var(--neon);
+        }
+
+        .coffee-cup {
+            position: relative;
+            width: 150px;
+            height: 120px;
+            margin: 0 auto 3rem;
+            animation: warp 15s infinite linear;
+        }
+
+        .cup {
+            width: 100px;
+            height: 80px;
+            background: var(--coffee);
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px #3e2723, 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .cup:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            animation: liquid 10s infinite linear;
+        }
+
+        @keyframes liquid {
+            0% { transform: translateY(0) rotate(45deg); }
+            100% { transform: translateY(-20px) rotate(45deg); }
+        }
+
+        .cup:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 5px solid #3e2723;
+            border-radius: 50%;
+            right: -35px;
+            top: 20px;
+        }
+
+        .plate {
+            width: 140px;
+            height: 30px;
+            background: #3e2723;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -5px;
+            left: 5px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .steam {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .steam span {
+            display: inline-block;
+            margin: 0 5px;
+            width: 15px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(5px);
+            animation: coffeeSteam 4s infinite;
+        }
+
+        .steam span:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .steam span:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .steam span:nth-child(3) {
+            animation-delay: 2.5s;
+        }
+
+        /* Секція про нас */
+        .about {
+            padding: 10rem 2rem;
+            background: rgba(10, 14, 23, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            opacity: 0.2;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 4rem;
+            color: var(--light);
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--neon));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(10deg);
+            transition: var(--transition);
+            animation: morph 10s infinite ease-in-out;
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .about-text p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Меню */
+        .menu {
+            padding: 10rem 2rem;
+            background: rgba(26, 18, 11, 0.8);
+            position: relative;
+        }
+
+        .menu:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 5px solid var(--neon);
+            top: 50px;
+            left: 50px;
+            border-radius: 50%;
+            animation: pulse 6s infinite alternate;
+            opacity: 0.1;
+        }
+
+        .menu:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 5px solid var(--accent);
+            bottom: 50px;
+            right: 50px;
+            border-radius: 50%;
+            animation: pulse 8s infinite alternate-reverse;
+            opacity: 0.1;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(10, 14, 23, 0.6);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-tabs {
+            display: flex;
+            background: rgba(78, 52, 39, 0.3);
+            overflow-x: auto;
+            padding: 0 2rem;
+        }
+
+        .menu-tab {
+            padding: 1.8rem 2.5rem;
+            color: var(--light);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-tab:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .menu-tab:hover:before {
+            left: 100%;
+        }
+
+        .menu-tab.active {
+            background: rgba(255, 87, 34, 0.2);
+            color: var(--accent);
+            border-bottom: 3px solid var(--neon);
+        }
+
+        .menu-items {
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .menu-item {
+            background: rgba(26, 18, 11, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            animation: fadeIn 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 87, 34, 0.3);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .menu-item-content {
+            padding: 2rem;
+        }
+
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            color: var(--light);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .menu-item-price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+        }
+
+        .menu-item-desc {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .menu-item-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .menu-item-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* Нова секція "Зв'яжіться з нами" */
+        .contact-online {
+            padding: 10rem 2rem;
+            background: rgba(78, 52, 39, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-online:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" stroke="%2300f3ff" fill="none" /></svg>');
+            animation: spin 30s infinite linear;
+        }
+
+        .contact-online-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(10, 14, 23, 0.7);
+            padding: 4rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-online-container:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.03"><circle cx="50" cy="50" r="40" stroke="%23ff5722" fill="none" /></svg>');
+            animation: spin 20s infinite linear;
+            z-index: -1;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            background: rgba(26, 18, 11, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-method:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 87, 34, 0.1), rgba(0, 243, 255, 0.1));
+            z-index: -1;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .contact-method:hover:before {
+            opacity: 1;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 87, 34, 0.2);
+        }
+
+        .contact-icon-large {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            transition: var(--transition);
+        }
+
+        .contact-method:hover .contact-icon-large {
+            color: var(--accent);
+            transform: scale(1.2) rotate(10deg);
+            text-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+        }
+
+        .contact-method h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--light);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .contact-method p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Секція соціальних мереж */
+        .social-section {
+            padding: 8rem 2rem;
+            background: rgba(10, 14, 23, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-section:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            opacity: 0.1;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .social-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .social-item {
+            background: rgba(26, 18, 11, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 87, 34, 0.1), rgba(0, 243, 255, 0.1));
+            z-index: -1;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .social-item:hover:before {
+            opacity: 1;
+        }
+
+        .social-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 87, 34, 0.2);
+        }
+
+        .social-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            transition: var(--transition);
+        }
+
+        .social-item:hover .social-icon {
+            color: var(--accent);
+            transform: scale(1.2);
+            text-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+        }
+
+        .social-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .social-item p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Контакти */
+        .contact {
+            padding: 10rem 2rem;
+            background: rgba(10, 14, 23, 0.8);
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: var(--transition);
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(26, 18, 11, 0.5);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 87, 34, 0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.2) rotate(15deg);
+            background: linear-gradient(45deg, var(--neon), var(--accent));
+        }
+
+        .contact-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            height: 450px;
+            border: 3px solid var(--accent);
+            animation: pulse 5s infinite;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Футер */
+        footer {
+            background: rgba(10, 14, 23, 0.95);
+            color: var(--light);
+            padding: 6rem 2rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.03"><polygon points="50,0 100,50 50,100 0,50" stroke="%2300f3ff" fill="none" /></svg>');
+            animation: spin 40s infinite linear;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--neon);
+            font-family: 'Rubik Glitch', cursive;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: var(--transition);
+            font-size: 1.3rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-8px) rotate(10deg);
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.5);
+        }
+
+        .footer-links h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon);
+        }
+
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neon));
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--coffee));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 6rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: rgba(10, 14, 23, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .contact-online-container {
+                padding: 3rem 2rem;
+            }
+            
+            .menu-tabs {
+                padding: 0 1rem;
+            }
+            
+            .menu-tab {
+                padding: 1.5rem 1.8rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .contact-method {
+                padding: 2rem 1.5rem;
+            }
+            
+            .social-item {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер -->
+    <header id="header">
+        <a href="#" class="logo">
+            <i class="fas fa-meteor"></i>
+            Cosmic Coffee
+        </a>
+        
+        <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Головна</a></li>
+            <li><a href="#about">Про нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#contact-online">Зв'язок</a></li>
+            <li><a href="#contact">Контакти</a></li>
+        </ul>
+    </header>
+
+    <!-- Герой секція -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"><i class="fas fa-coffee"></i></div>
+            <div class="floating-element"><i class="fas fa-cookie-bite"></i></div>
+            <div class="floating-element"><i class="fas fa-ice-cream"></i></div>
+            <div class="floating-element"><i class="fas fa-stroopwafel"></i></div>
+            <div class="floating-element"><i class="fas fa-moon"></i></div>
+            <div class="floating-element"><i class="fas fa-star"></i></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="coffee-cup">
+                <div class="steam">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="cup"></div>
+                <div class="plate"></div>
+            </div>
+            <h1>Cosmic Coffee</h1>
+            <p>Відчуй смак всесвіту в кожній чашці</p>
+            <a href="#contact-online" class="btn">Забронювати онлайн</a>
+        </div>
+    </section>
+
+    <!-- Про нас -->
+    <section class="about" id="about">
+        <h2 class="section-title">Наша місія</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Інтер'єр кав'ярні">
+            </div>
+            <div class="about-text">
+                <h3>Ми створюємо космічну атмосферу з 2015 року</h3>
+                <p>Наша кав'ярня - це не просто місце, де подають каву. Це простір, де зустрічаються галактики смаків, де кожен напій - це маленька подорож до іншої планети.</p>
+                <p>Ми використовуємо тільки найякісніші зерна з різних куточків світу, а наші баристи - справжні космічні алхіміки, які створюють унікальні напої.</p>
+                <a href="#menu" class="btn">Дослідити меню</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section class="menu" id="menu">
+        <h2 class="section-title">Космічне меню</h2>
+        <div class="menu-container">
+            <div class="menu-tabs">
+                <div class="menu-tab active" data-category="coffee">Кава</div>
+                <div class="menu-tab" data-category="tea">Чай</div>
+                <div class="menu-tab" data-category="desserts">Десерти</div>
+                <div class="menu-tab" data-category="signature">Фірмові напої</div>
+            </div>
+            <div class="menu-items">
+                <!-- Елементи меню будуть додані через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Нова секція "Зв'яжіться з нами" -->
+    <section class="contact-online" id="contact-online">
+        <h2 class="section-title">Зв'яжіться з нами онлайн</h2>
+        <div class="contact-online-container">
+            <p style="text-align: center; font-size: 1.4rem; margin-bottom: 3rem; line-height: 1.6;">
+                Забронюйте стіл, дізнавайтеся про акції та отримуйте персоналізовані пропозиції через зручні способи зв'язку
+            </p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon-large">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Напишіть нам у WhatsApp для швидкого бронювання та відповідей на запитання</p>
+                    <a href="https://wa.me/380991234567" class="contact-btn">Написати</a>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon-large">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <h3>Messenger</h3>
+                    <p>Зв'яжіться з нами через Facebook Messenger для бронювання та консультації</p>
+                    <a href="https://m.me/cosmiccoffee" class="contact-btn">Написати</a>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon-large">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Чат-бот</h3>
+                    <p>Скористайтесь нашим чат-ботом для миттєвого бронювання столиків цілодобово</p>
+                    <a href="#chatbot" class="contact-btn">Забронювати</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція соціальних мереж -->
+    <section class="social-section" id="social">
+        <h2 class="section-title">Слідкуйте за нами</h2>
+        <div class="social-container">
+            <p style="font-size: 1.4rem; margin-bottom: 4rem; line-height: 1.6;">
+                Приєднуйтесь до нашої космічної спільноти в соціальних мережах та дізнавайтеся про новинки першими
+            </p>
+            
+            <div class="social-grid">
+                <div class="social-item">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>Слідкуйте за нашим космічним життям та акціями</p>
+                    <a href="https://instagram.com/cosmiccoffee" class="social-link">Підписатись</a>
+                </div>
+                
+                <div class="social-item">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Приєднуйтесь до нашої спільноти та діліться враженнями</p>
+                    <a href="https://facebook.com/cosmiccoffee" class="social-link">Приєднатись</a>
+                </div>
+                
+                <div class="social-item">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>TikTok</h3>
+                    <p>Дивіться наші відео про приготування кави та життя кав'ярні</p>
+                    <a href="https://tiktok.com/@cosmiccoffee" class="social-link">Дивитись</a>
+                </div>
+                
+                <div class="social-item">
+                    <div class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p>Підпишіться на наш канал для отримання ексклюзивних пропозицій</p>
+                    <a href="https://t.me/cosmiccoffee" class="social-link">Підписатись</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакти -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Координати</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Планета Земля</h3>
+                        <p>вул. Зоряна, 42, м. Київ</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Космозв'язок</h3>
+                        <p>+38 (099) 123-45-67</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Міжпланетна пошта</h3>
+                        <p>info@cosmiccoffee.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Час роботи</h3>
+                        <p>Пн-Нд: 8:00 - 23:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.155915199999!2d30.523734!3d50.4501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjQiTiAzMMKwMzEnMjUuNCJF!5e0!3m2!1suk!2sua!4v1653567890123!5m2!1suk!2sua" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">Cosmic Coffee</div>
+                <p>Ми створюємо унікальні космічні напої та незабутні враження для наших клієнтів щодня.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Навігація</h3>
+                <ul>
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#about">Про нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#contact-online">Зв'язок</a></li>
+                    <li><a href="#contact">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Час польотів</h3>
+                <ul>
+                    <li>Понеділок - П'ятниця: 8:00 - 23:00</li>
+                    <li>Субота: 9:00 - 24:00</li>
+                    <li>Неділя: 9:00 - 22:00</li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Космічна розсилка</h3>
+                <p>Підпишіться на нашу розсилку для отримання спеціальних пропозицій та новин</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Ваша електронна пошта" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Cosmic Coffee. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Дані меню
+        const menuItems = {
+            coffee: [
+                { name: "Еспресо Орбіта", price: "45 грн", desc: "Міцний еспресо з космічною енергією", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Капучино Небула", price: "55 грн", desc: "Ніжний капучино з молочною піною", image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Лате Галактика", price: "60 грн", desc: "Еспресо з великою кількістю молока", image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Американо Планета", price: "50 грн", desc: "Еспресо з додаванням гарячої води", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Мокка Марс", price: "65 грн", desc: "Еспресо з шоколадом і молоком", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Флет Вайт Юпітер", price: "62 грн", desc: "Подвійний еспресо з м'якою молочною текстурою", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+            ],
+            tea: [
+                { name: "Зелений чай Сатурн", price: "50 грн", desc: "Освіжаючий зелений чай з нотками жасмину", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Чорний чай Меркурій", price: "50 грн", desc: "Ароматний чорний чай з бергамотом", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Фруктовий чай Венера", price: "55 грн", desc: "Чай з яскравими фруктовими нотками", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Чай матча Плутон", price: "65 грн", desc: "Традиційний японський чай матча", image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+            ],
+            desserts: [
+                { name: "Тірамісу Комета", price: "85 грн", desc: "Класичний італійський десерт з космічним смаком", image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Чізкейк Андромеда", price: "75 грн", desc: "Ніжний чізкейк Нью-Йорк з полуничним соусом", image: "https://images.unsplash.com/photo-1524351199678-941a58a3df50?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Макаруни Сузір'я", price: "55 грн", desc: "Французький десерт з різними смаками", image: "https://images.unsplash.com/photo-1558328392-97c92bdfb973?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Шоколадний торт Чумацький Шлях", price: "80 грн", desc: "Насичений шоколадний торт з горіховим кремом", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+            ],
+            signature: [
+                { name: "Космічний Лате", price: "75 грн", desc: "Фірмовий лате з блакитним кольором та зірчатим дизайном", image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Гравітаційний Мокка", price: "80 грн", desc: "Шоколадний мокка з ефектом гравітації", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Чорна Діра", price: "85 грн", desc: "Міцний еспресо з чорним кольором та блискавками", image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+                { name: "Молочний Шлях", price: "70 грн", desc: "Ніжний молочний коктейль з зірчастим пилом", image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+            ]
+        };
+
+        // Ініціалізація сайту
+        document.addEventListener('DOMContentLoaded', function() {
+            // Завантаження меню
+            loadMenuItems('coffee');
+            
+            // Обробник кліків по табах меню
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    menuTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    loadMenuItems(tab.dataset.category);
+                });
+            });
+            
+            // Обробник форми розсилки
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Дякуємо за підписку на нашу космічну розсилку!');
+                newsletterForm.reset();
+            });
+            
+            // Мобільне меню
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                
+                if (navLinks.classList.contains('active')) {
+                    navToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Плавна прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрити мобільне меню після кліку
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+            });
+            
+            // Ефект скролу для хедера
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Анімація елементів при скролі
+                animateOnScroll();
+            });
+            
+            // Ініціалізація анімацій при скролі
+            function animateOnScroll() {
+                document.querySelectorAll('.menu-item, .contact-item, .about-image, .about-text, .contact-method, .social-item').forEach(el => {
+                    const position = el.getBoundingClientRect();
+                    
+                    // Якщо елемент видимий на екрані
+                    if(position.top < window.innerHeight - 100) {
+                        el.style.animation = 'fadeIn 1s ease-out forwards';
+                    }
+                });
+            }
+            
+            // Спочатку запустити анімацію для видимих елементів
+            animateOnScroll();
+        });
+
+        // Функція завантаження елементів меню
+        function loadMenuItems(category) {
+            const menuItemsContainer = document.querySelector('.menu-items');
+            menuItemsContainer.innerHTML = '';
+            
+            menuItems[category].forEach(item => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.classList.add('menu-item');
+                menuItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>${item.name}</h3>
+                            <span class="menu-item-price">${item.price}</span>
+                        </div>
+                        <p class="menu-item-desc">${item.desc}</p>
+                        <button class="menu-item-btn">Замовити</button>
+                    </div>
+                `;
+                
+                menuItemsContainer.appendChild(menuItemElement);
+            });
+            
+            // Додати обробники кліків для кнопок додавання
+            document.querySelectorAll('.menu-item-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemName = this.parentElement.querySelector('h3').textContent;
+                    alert(`Додано "${itemName}" до вашого космічного замовлення!`);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

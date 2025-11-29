@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <style>
+        /* Base Reset */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            background: #0b0b0d;
+            color: #e6e6e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :root {
+            --bg: #0b0b0d;
+            --fg: #e6e6e8;
+            --muted: #9a9aa1;
+            --primary: #c31432;
+            --primary-600: #a3122b;
+            --accent: #ff2d55;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-2: rgba(255, 255, 255, 0.03);
+            --card: #121216;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>');
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 32px;
+            backdrop-filter: blur(8px);
+            background: linear-gradient(to bottom, rgba(11, 11, 13, 0.85), rgba(11, 11, 13, 0));
+            border-bottom: 1px solid transparent;
+        }
+
+        .site-header .nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .site-header .nav a {
+            color: var(--muted);
+            transition: color .2s ease;
+        }
+
+        .site-header .nav a:hover {
+            color: var(--fg);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--glass);
+            color: var(--fg);
+            transition: all .25s ease;
+        }
+
+        .btn:hover {
+            background: var(--glass-2);
+            border-color: rgba(255, 255, 255, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(195, 20, 50, 0.35);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border-color: var(--border);
+        }
+
+        .btn-wide {
+            width: 100%;
+            height: 52px;
+            font-weight: 600;
+        }
+
+
+
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 120px 20px 64px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(60% 45% at 50% 40%, rgba(195, 20, 50, 0.35), transparent 70%), radial-gradient(50% 40% at 50% 60%, rgba(255, 45, 85, 0.18), transparent 65%);
+            transform: scale(1.1);
+            filter: blur(6px);
+        }
+
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 180px 80px rgba(0, 0, 0, 0.9);
+        }
+
+        .hero-title {
+            font-family: 'UnifrakturMaguntia', serif;
+            letter-spacing: 2px;
+            line-height: .9;
+            font-size: clamp(56px, 10vw, 132px);
+            margin: 0;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(195, 20, 50, 0.6);
+        }
+
+        .hero-subtitle {
+            margin: 12px 0 28px;
+            color: var(--muted);
+            font-size: clamp(16px, 2.2vw, 20px);
+        }
+
+        .cta-group {
+            display: inline-flex;
+            gap: 14px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .cursor-fx {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            background: radial-gradient(circle at center, rgba(255, 45, 85, 0.6), rgba(195, 20, 50, 0) 60%);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .feature h3 {
+            margin: 0 0 8px;
+        }
+
+        .section-head {
+            text-align: center;
+            padding: 40px 20px 10px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            margin: 0 0 10px;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .rooms {
+            padding: 20px;
+            max-width: 1300px;
+            margin: 0 auto 40px;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .room-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: 240px auto;
+        }
+
+        .room-media {
+            background-image: var(--bg);
+            background-size: cover;
+            background-position: center;
+            filter: saturate(.8) contrast(1.05);
+            transform: scale(1.02);
+        }
+
+        .room-info {
+            padding: 18px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .room-info .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .trailer {
+            padding: 40px 20px 20px;
+        }
+
+        .trailer-frame {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .trailer-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .about {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .stats {
+            list-style: none;
+            padding: 0;
+            margin: 26px 0 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: center;
+        }
+
+        .stats .num {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--fg);
+        }
+
+        .stats .label {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .reviews {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .reviews-wrap {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .reviews blockquote {
+            margin: 0;
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .reviews cite {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-style: normal;
+        }
+
+        .booking {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 20px;
+        }
+
+        .booking-form {
+            display: grid;
+            gap: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            height: 46px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #0f0f14;
+            color: var(--fg);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+        }
+
+        .error {
+            display: none;
+            color: #ff6b6b;
+            font-size: 12px;
+        }
+
+        .field.invalid .error {
+            display: block;
+        }
+
+        .form-note {
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .form-toast {
+            display: none;
+            margin-top: 8px;
+            text-align: center;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(26, 255, 26, 0.05);
+            border: 1px solid rgba(26, 255, 26, 0.2);
+            color: #9bffa3;
+        }
+
+        .form-toast.show {
+            display: block;
+        }
+
+        .site-footer {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            color: var(--muted);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 16px;
+        }
+
+        .link {
+            color: #9bdcff;
+        }
+
+        /* Animations */
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+
+            .room-grid,
+            .reviews-wrap,
+            .features,
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .site-header {
+                padding: 14px 16px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .room-grid,
+            .reviews-wrap,
+            .features,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+        }
+    </style>
+    <!-- Fix: ensure content is visible even if JS/GSAP fails to load -->
+    <style>
+        [data-animate] {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style>
+        /* Glitch title */
+        .hero-title {
+            position: relative;
+        }
+
+        .hero-title::before,
+        .hero-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: var(--primary);
+            opacity: .12;
+            clip-path: inset(0 0 0 0);
+        }
+
+        .hero-title::before {
+            transform: translate(2px, 0);
+            filter: blur(.5px);
+        }
+
+        .hero-title::after {
+            transform: translate(-2px, 0);
+            filter: blur(.5px);
+        }
+
+        @keyframes glitch {
+
+            0%,
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+            }
+
+            15% {
+                clip-path: inset(10% 0 0 0);
+                transform: translate(-1px, 0);
+            }
+
+            30% {
+                clip-path: inset(0 0 20% 0);
+                transform: translate(1px, 0);
+            }
+
+            45% {
+                clip-path: inset(40% 0 0 0);
+                transform: translate(-1px, 0);
+            }
+
+            60% {
+                clip-path: inset(0 0 50% 0);
+                transform: translate(1px, 0);
+            }
+
+            75% {
+                clip-path: inset(70% 0 0 0);
+                transform: translate(-1px, 0);
+            }
+        }
+
+        .hero-title::before {
+            animation: glitch 2.2s infinite linear alternate-reverse;
+        }
+
+        .hero-title::after {
+            animation: glitch 1.8s infinite linear alternate;
+        }
+
+        /* Marquee warning strip */
+        .warning-strip {
+            position: relative;
+            overflow: hidden;
+            border-block: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .warning-track {
+            display: flex;
+            gap: 36px;
+            white-space: nowrap;
+            padding: 10px 0;
+            animation: marquee 18s linear infinite;
+            color: #ffb4b4;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 700;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .warning-track .dot {
+            color: var(--muted);
+        }
+
+        /* Blood divider */
+        .blood-divider {
+            position: relative;
+            height: 60px;
+            background: radial-gradient(ellipse at top, rgba(195, 20, 50, 0.35), transparent 60%);
+        }
+
+        .blood-divider svg {
+            position: absolute;
+            inset: auto 0 0 0;
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+
+        /* Floating Telegram button */
+        .floating-tg {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 60;
+            height: 56px;
+            padding: 0 18px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #27a7e7, #1b87c8);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(27, 135, 200, 0.4);
+            border: 0;
+        }
+
+        .floating-tg .tg-ic {
+            font-size: 20px;
+        }
+
+        .floating-tg:hover {
+            filter: brightness(1.05);
+            transform: translateY(-2px);
+        }
+
+        /* Contact (Telegram) section */
+        .contact {
+            max-width: 760px;
+            margin: 0 auto 60px;
+            padding: 20px;
+        }
+
+        .contact-card {
+            display: grid;
+            gap: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .contact .hint {
+            color: var(--muted);
+        }
+
+        .magnet {
+            will-change: transform;
+        }
+
+        /* Price badge */
+        .price {
+            font-weight: 700;
+            color: #ffd1d1;
+        }
+
+        /* Pricing section */
+        .pricing {
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .plan {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .plan h3 {
+            margin: 0;
+        }
+
+        .plan .cost {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .plan .note {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Motion reduction */
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero-title::before,
+            .hero-title::after {
+                animation: none !important;
+            }
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>FEAR ROOM | Преміум квест-кімнати жахів</title>
+    <meta name="description"
+        content="Преміум квест-кімнати жахів. Випробуй себе: страх, адреналін, командна гра. Онлайн-бронювання, трейлери та відгуки." />
+    <link rel="canonical" href="https://fearroom.example.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%91%BB%3C/text%3E%3C/svg%3E" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FEAR ROOM | Преміум квест-кімнати жахів" />
+    <meta property="og:description"
+        content="Відчуй справжній страх. Трейлери, бронювання, рейтинги. Лише для сміливих." />
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FEAR ROOM | Преміум квест-кімнати жахів" />
+    <meta name="twitter:description"
+        content="Відчуй справжній страх. Трейлери, бронювання, рейтинги. Лише для сміливих." />
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" />
+    <meta name="theme-color" content="#0b0b0d" />
+</head>
+
+<body>
+    <div class="noise"></div>
+    <header class="site-header" data-animate="stagger">
+        <a href="#" class="logo" aria-label="FEAR ROOM">
+            <img src="assets/img/logo.svg" alt="Fear Room" width="132" height="36" />
+        </a>
+        <nav class="nav">
+            <a href="#rooms">Кімнати</a>
+            <a href="#pricing">Ціни</a>
+            <a href="#about">Про нас</a>
+            <a href="#reviews">Відгуки</a>
+            <a href="#contact" class="btn btn-ghost">Telegram</a>
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <div class="hero-vignette"></div>
+            </div>
+            <div class="hero-content" data-animate="hero">
+                <h1 class="hero-title" data-text="FEAR ROOM"><span>FEAR</span> ROOM</h1>
+                <p class="hero-subtitle">Квест-кімнати, де страх стає мистецтвом</p>
+                <div class="cta-group">
+                    <a href="#rooms" class="btn btn-primary magnet">Обрати квест</a>
+                    <a href="#contact" class="btn btn-ghost magnet">Звʼязатися в Telegram</a>
+                </div>
+                <div class="scroll-indicator">Прокрути вниз</div>
+            </div>
+            <div class="cursor-fx" aria-hidden="true"></div>
+        </section>
+
+        <section class="pricing" id="pricing" data-animate="stagger">
+            <header class="section-head">
+                <h2>Ціни</h2>
+                <p>Прозоро та просто. Оплата на місці.</p>
+            </header>
+            <div class="pricing-grid">
+                <div class="plan">
+                    <h3>Будні до 17:00</h3>
+                    <div class="cost">1100₴</div>
+                    <div class="note">за команду до 4 гравців, +150₴ за кожного додаткового</div>
+                </div>
+                <div class="plan">
+                    <h3>Вечір/Вихідні</h3>
+                    <div class="cost">1400₴</div>
+                    <div class="note">за команду до 4 гравців, +200₴ за кожного додаткового</div>
+                </div>
+                <div class="plan">
+                    <h3>Преміум</h3>
+                    <div class="cost">1800₴</div>
+                    <div class="note">акторська участь, фото/відео-супровід</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="blood-divider" aria-hidden="true">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+                <path
+                    d="M0,0 C120,40 240,40 360,20 C480,0 600,20 720,35 C840,50 960,55 1080,30 C1200,5 1320,15 1440,40 L1440,60 L0,60 Z"
+                    fill="rgba(195,20,50,0.4)"></path>
+            </svg>
+        </div>
+
+        <div class="warning-strip" aria-hidden="true">
+            <div class="warning-track">
+                ⚠︎ Вхід на власний страх <span class="dot">•</span> 18+ контент <span class="dot">•</span> панічні атаки
+                можливі <span class="dot">•</span>
+                ⚠︎ Вхід на власний страх <span class="dot">•</span> 18+ контент <span class="dot">•</span> панічні атаки
+                можливі <span class="dot">•</span>
+            </div>
+        </div>
+
+        <section class="features" id="features" data-animate="stagger">
+            <article class="feature">
+                <h3>Кінематографічна постановка</h3>
+                <p>Світло, звук, дим та реквізит створюють повне занурення.</p>
+            </article>
+            <article class="feature">
+                <h3>Складні головоломки</h3>
+                <p>Інтелектуальні задачі без «ламання логіки».</p>
+            </article>
+            <article class="feature">
+                <h3>Актори та інтерактив</h3>
+                <p>Живі актори, іммерсія та персоналізовані сценарії.</p>
+            </article>
+        </section>
+
+        <section class="rooms" id="rooms">
+            <header class="section-head" data-animate="stagger">
+                <h2>Кімнати жахів</h2>
+                <p>Вибери свій страх. Бронюй негайно.</p>
+            </header>
+            <div class="room-grid">
+                <article class="room-card" data-animate="card">
+                    <div class="room-media"
+                        style="--bg:url('https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1200&auto=format&fit=crop');">
+                    </div>
+                    <div class="room-info">
+                        <h3>Покинута лікарня</h3>
+                        <p>Темні коридори, шепіт з палат і тінь, що слідкує.</p>
+                        <div class="meta"><span>60 хв</span><span>2–6 гравців</span><span>Складність: 4/5</span></div>
+                        <div class="price">від 1200₴ / команда</div>
+                        <a href="#contact" class="btn btn-primary magnet tg-btn" data-room="Покинута лікарня">Звʼязатися
+                            в Telegram</a>
+                    </div>
+                </article>
+                <article class="room-card" data-animate="card">
+                    <div class="room-media"
+                        style="--bg:url('https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1200&auto=format&fit=crop');">
+                    </div>
+                    <div class="room-info">
+                        <h3>Будинок лялькаря</h3>
+                        <p>Порожні очі дивляться з темряви. Вони рухаються, коли ти моргаєш.</p>
+                        <div class="meta"><span>75 хв</span><span>3–7 гравців</span><span>Складність: 5/5</span></div>
+                        <div class="price">від 1600₴ / команда</div>
+                        <a href="#contact" class="btn btn-primary magnet tg-btn" data-room="Будинок лялькаря">Звʼязатися
+                            в Telegram</a>
+                    </div>
+                </article>
+                <article class="room-card" data-animate="card">
+                    <div class="room-media"
+                        style="--bg:url('https://images.unsplash.com/photo-1500754088824-ce0584bace00?q=80&w=1200&auto=format&fit=crop');">
+                    </div>
+                    <div class="room-info">
+                        <h3>Ритуал</h3>
+                        <p>Кривавий знак на підлозі. Час зникає, двері закриваються.</p>
+                        <div class="meta"><span>50 хв</span><span>2–5 гравців</span><span>Складність: 3/5</span></div>
+                        <div class="price">від 1100₴ / команда</div>
+                        <a href="#contact" class="btn btn-primary magnet tg-btn" data-room="Ритуал">Звʼязатися в
+                            Telegram</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="trailer" id="trailer" data-animate="stagger">
+            <div class="trailer-frame">
+                <iframe title="Трейлер FEAR ROOM"
+                    src="https://www.youtube.com/embed/5x-d3p3T4MM?rel=0&controls=1&modestbranding=1" allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section class="about" id="about" data-animate="stagger">
+            <header class="section-head">
+                <h2>Про FEAR ROOM</h2>
+                <p>Команда режисерів, декораторів та сценаристів перетворює ваш страх у витвір мистецтва.</p>
+            </header>
+            <ul class="stats">
+                <li><span class="num">25k+</span><span class="label">гравців</span></li>
+                <li><span class="num">4.9★</span><span class="label">рейтинг</span></li>
+                <li><span class="num">7</span><span class="label">кімнат</span></li>
+            </ul>
+        </section>
+
+        <section class="reviews" id="reviews" data-animate="stagger">
+            <header class="section-head">
+                <h2>Відгуки</h2>
+                <p>Що кажуть ті, хто наважився.</p>
+            </header>
+            <div class="reviews-wrap">
+                <blockquote>“Краще за хорор у кіно. Я кричав і сміявся одночасно.” <cite>— Микола</cite></blockquote>
+                <blockquote>“Актори — топ! Емоції зашкалюють, атмосфера відчувається кожною клітиною.” <cite>—
+                        Оля</cite></blockquote>
+                <blockquote>“Головоломки продумані. Жах, але інтелігентний.” <cite>— Данило</cite></blockquote>
+            </div>
+        </section>
+
+        <section class="contact" id="contact" data-animate="stagger">
+            <header class="section-head">
+                <h2>Звʼязок у Telegram</h2>
+                <p>Напишіть нам у Telegram — відповімо протягом 10 хвилин.</p>
+            </header>
+            <div class="contact-card">
+                <div class="field">
+                    <label for="msg">Повідомлення</label>
+                    <textarea id="msg" rows="4" placeholder="Привіт! Хочу записатися на ..."
+                        style="resize:vertical;height:96px;padding:12px;border-radius:12px;border:1px solid var(--border);background:#0f0f14;color:var(--fg);"></textarea>
+                </div>
+                <button class="btn btn-primary btn-wide magnet tg-send">Написати в Telegram</button>
+                <p class="hint">Кнопка відкриє чат у Telegram з попередньо заповненим текстом.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" data-animate="stagger">
+        <div class="footer-brand">
+            <img src="assets/img/logo.svg" alt="Fear Room" width="110" height="30" />
+            <p>© <span id="year"></span> FEAR ROOM. Всі права захищено.</p>
+        </div>
+        <nav class="footer-nav">
+            <a href="#about">Про нас</a>
+            <a href="#rooms">Кімнати</a>
+            <a href="#pricing">Ціни</a>
+            <a href="#contact">Telegram</a>
+            <a href="#" class="link">Політика</a>
+        </nav>
+    </footer>
+
+
+
+    <a class="floating-tg magnet" href="#contact" aria-label="Звʼязатися в Telegram">
+        <span class="tg-ic">✈️</span> Telegram
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script>
+        // Lightweight analytics hook (replace with your provider)
+        window.dataLayer = window.dataLayer || [];
+        function track() { dataLayer.push(arguments); }
+        track('js', new Date());
+        track('config', { site: 'fearroom' });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

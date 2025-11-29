@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumiére - Елітний б'юті салон</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #f8e1e7;
+            --secondary-color: #d4afcd;
+            --accent-color: #a2678a;
+            --dark-color: #4d3b4f;
+            --light-color: #fff9fb;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light-color);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: white;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .service-price {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list i {
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to bottom, var(--primary-color), white);
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 5px solid var(--primary-color);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .testimonial-controls button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+        
+        .testimonial-controls button:hover {
+            color: var(--dark-color);
+        }
+        
+        /* Contact Specialists Section */
+        .contact-specialists {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-specialists::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+        
+        .contact-specialists h2 {
+            color: white;
+            position: relative;
+        }
+        
+        .specialists-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .specialist-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .specialist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .specialist-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 5px solid var(--primary-color);
+        }
+        
+        .specialist-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .specialist-role {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .specialist-desc {
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .specialist-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .contact-link:hover {
+            background: var(--dark-color);
+            transform: translateY(-5px);
+        }
+        
+        .social-section {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .social-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .social-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .social-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .social-card p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: var(--accent-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .social-btn:hover {
+            background: var(--dark-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .footer-col p, .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                height: calc(100vh - 80px);
+                padding: 40px;
+                transition: var(--transition);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .header-buttons {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .about-image, .about-content {
+                min-width: 100%;
+            }
+            
+            .specialist-contacts {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo"><i class="fas fa-spa"></i> Lumiére</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#">Головна</a></li>
+                <li><a href="#services">Послуги</a></li>
+                <li><a href="#about">Про нас</a></li>
+                <li><a href="#testimonials">Відгуки</a></li>
+                <li><a href="#contact-specialists">Прямий зв'язок</a></li>
+                <li><a href="#contact">Контакти</a></li>
+            </ul>
+            
+            <div class="header-buttons">
+                <a href="#contact-specialists" class="btn btn-primary">Зв'язатися</a>
+                <a href="tel:+380991234567" class="btn btn-outline">Подзвонити</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Ваша краза починається тут</h1>
+            <p>Елітний б'юті салон, де кожна деталь створена для вашого комфорту та краси</p>
+            <a href="#contact-specialists" class="btn btn-primary">Зв'язатися з спеціалістом</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наші послуги</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="Стрижка та укладка">
+                    </div>
+                    <div class="service-content">
+                        <h3>Стрижка та укладка</h3>
+                        <p>Професійна стрижка, укладка та креативні зачіски для будь-якої нагоди</p>
+                        <span class="service-price">від 500 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Манікюр та педікюр">
+                    </div>
+                    <div class="service-content">
+                        <h3>Манікюр та педікюр</h3>
+                        <p>Класичний, апаратний та комбінований манікюр з використанням premium косметики</p>
+                        <span class="service-price">від 700 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80" alt="Косметологія">
+                    </div>
+                    <div class="service-content">
+                        <h3>Косметологія</h3>
+                        <p>Доглядові процедури, чищення обличчя, ін'єкційні методики омолодження</p>
+                        <span class="service-price">від 1200 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Візаж">
+                    </div>
+                    <div class="service-content">
+                        <h3>Візаж</h3>
+                        <p>Щоденний, вечірній та весільний макіяж від наших топ-візажистів</p>
+                        <span class="service-price">від 900 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1519974719765-e6559eac2575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Масаж">
+                    </div>
+                    <div class="service-content">
+                        <h3>Масаж</h3>
+                        <p>Релаксуючий, лікувальний, антицелюлітний та інші види масажу</p>
+                        <span class="service-price">від 800 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Брови та вії">
+                    </div>
+                    <div class="service-content">
+                        <h3>Брови та вії</h3>
+                        <p>Корекція та фарбування брів, ламінування, нарощування вій</p>
+                        <span class="service-price">від 400 грн</span>
+                        <a href="#contact-specialists" class="btn btn-outline">Зв'язатися</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Салон Lumiére">
+            </div>
+            <div class="about-content">
+                <h2>Чому обирають саме нас?</h2>
+                <p>Lumiére - це елітний б'юті простір, де поєднуються останні тенденції beauty-індустрії, високий сервіс та індивідуальний підхід до кожного клієнта.</p>
+                <p>Наші майстри - це команда професіоналів, які регулярно підвищують кваліфікацію на міжнародних тренінгах та чемпіонатах.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Premium якість косметики</li>
+                    <li><i class="fas fa-check-circle"></i> Стерильність та безпека</li>
+                    <li><i class="fas fa-check-circle"></i> Індивідуальний підхід</li>
+                    <li><i class="fas fa-check-circle"></i> Сучасне обладнання</li>
+                    <li><i class="fas fa-check-circle"></i> Зручне розташування</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Відгуки наших клієнтів</h2>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Марія">
+                    <p class="testimonial-text">"Найкращий салон у місті! Роблю тут і стрижку, і манікюр, і візаж. Ніколи не була розчарована. Персонал дуже приємний, майстри - справжні професіонали. Раджу всім подругам!"</p>
+                    <p class="testimonial-author">Марія, постійна клієнтка</p>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Оксана">
+                    <p class="testimonial-text">"Вперше прийшла на косметологічну процедуру і залишилась дуже задоволена! Мені все пояснили, підібрали індивідуальний догляд. Шкіра просто сяє! Дякую майстру за чудову роботу."</p>
+                    <p class="testimonial-author">Оксана, клієнтка</p>
+                </div>
+                
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Анна">
+                    <p class="testimonial-text">"Робила весільну зачіску та макіяж у салоні Lumiére. Виглядала просто чарівно! Всі гості були в захваті. Дуже дякую майстрам за їхню роботу та чудну атмосферу!"</p>
+                    <p class="testimonial-author">Анна, наречена</p>
+                </div>
+                
+                <div class="testimonial-controls">
+                    <button id="prev-testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <button id="next-testimonial"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Specialists Section -->
+    <section class="section contact-specialists" id="contact-specialists">
+        <div class="container">
+            <div class="section-title">
+                <h2>Прямий зв'язок з нашими спеціалістами</h2>
+                <p>Оберіть спеціаліста та зв'яжіться з ним напряму для консультації або запису</p>
+            </div>
+            
+            <div class="specialists-container">
+                <div class="specialist-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Марія" class="specialist-img">
+                    <h3>Марія Іваненко</h3>
+                    <span class="specialist-role">Топ-стиліст</span>
+                    <p class="specialist-desc">Спеціалізуюсь на стрижках, фарбуванні та укладках. Працюю з різними типами волосся.</p>
+                    <div class="specialist-contacts">
+                        <a href="tel:+380991234561" class="contact-link"><i class="fas fa-phone"></i></a>
+                        <a href="https://t.me/maria_lumiere" class="contact-link"><i class="fab fa-telegram"></i></a>
+                        <a href="viber://chat?number=+380991234561" class="contact-link"><i class="fab fa-viber"></i></a>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Оксана" class="specialist-img">
+                    <h3>Оксана Петренко</h3>
+                    <span class="specialist-role">Майстер манікюру</span>
+                    <p class="specialist-desc">Створюю ідеальний манікюр та педікюр. Працюю з клієнтами понад 7 років.</p>
+                    <div class="specialist-contacts">
+                        <a href="tel:+380991234562" class="contact-link"><i class="fas fa-phone"></i></a>
+                        <a href="https://t.me/oksana_lumiere" class="contact-link"><i class="fab fa-telegram"></i></a>
+                        <a href="viber://chat?number=+380991234562" class="contact-link"><i class="fab fa-viber"></i></a>
+                    </div>
+                </div>
+                
+                <div class="specialist-card">
+                    <img src="https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Софія" class="specialist-img">
+                    <h3>Софія Коваль</h3>
+                    <span class="specialist-role">Косметолог</span>
+                    <p class="specialist-desc">Проводжу професійні доглядові процедури, чищення обличчя та консультації з догляду.</p>
+                    <div class="specialist-contacts">
+                        <a href="tel:+380991234563" class="contact-link"><i class="fas fa-phone"></i></a>
+                        <a href="https://t.me/sofia_lumiere" class="contact-link"><i class="fab fa-telegram"></i></a>
+                        <a href="viber://chat?number=+380991234563" class="contact-link"><i class="fab fa-viber"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="section social-section">
+        <div class="container social-container">
+            <div class="section-title">
+                <h2>Слідкуйте за нами в соцмережах</h2>
+                <p>Приєднуйтесь до нашої спільноти, ділитесь своїми враженнями та отримуйте ексклюзивні пропозиції</p>
+            </div>
+            
+            <div class="social-grid">
+                <div class="social-card">
+                    <i class="fab fa-telegram social-icon"></i>
+                    <h3>Наш Telegram</h3>
+                    <p>Приєднуйтесь до нашого каналу, щоб отримувати актуальні новини, знижки та корисні поради від наших спеціалістів</p>
+                    <a href="https://t.me/lumiere_salon" class="social-btn">Підписатися</a>
+                </div>
+                
+                <div class="social-card">
+                    <i class="fab fa-instagram social-icon"></i>
+                    <h3>Наш Instagram</h3>
+                    <p>Слідкуйте за нами в Instagram, де ми ділимося нашими роботами, подіями та життям салону</p>
+                    <a href="https://instagram.com/lumiere_salon" class="social-btn">Підписатися</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Lumiére</h3>
+                <p>Елітний б'юті салон, де ваша краза починається з гарного настрою та професійного підходу.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Години роботи</h3>
+                <ul>
+                    <li><i class="far fa-clock"></i> Понеділок - П'ятниця: 9:00 - 21:00</li>
+                    <li><i class="far fa-clock"></i> Субота: 10:00 - 20:00</li>
+                    <li><i class="far fa-clock"></i> Неділя: 10:00 - 18:00</li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Контакти</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> м. Київ, вул. Елегантна, 15</li>
+                    <li><i class="fas fa-phone"></i> +38 (099) 123-45-67</li>
+                    <li><i class="far fa-envelope"></i> info@lumiere-salon.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2023 Lumiére Beauty Salon. Всі права захищені.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Testimonials Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            testimonials[index].classList.add('active');
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        });
+        
+        // Auto slide testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
